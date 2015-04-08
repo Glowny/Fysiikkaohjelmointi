@@ -1,0 +1,10 @@
+-	Fysiikkamoduuli
+	-Komponenttimalli
+-	Tehtävän rajaaminen, skene eli mitä fysiikan ilmiötä tutkitaan ja simuloidaan.
+-	Skenen toteutus
+-	Graafinen käyttöliittymä eli näkymän suunnittelu & toteutus
+
+
+Ensimmäinen tehtävä:
+Kappale, jonka massa on 1.0kg, pudotetaan 2,0m korkeudelta lattialle.
+Kuinka korkealle kappale pomppaa lattiasta, jos restitutiokerroin on 0,6?

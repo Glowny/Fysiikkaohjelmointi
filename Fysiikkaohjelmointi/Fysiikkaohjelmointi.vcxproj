@@ -70,7 +70,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="DemoBox.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="ValueBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="DemoBox.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="TextBox.h" />
+    <ClInclude Include="ValueBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

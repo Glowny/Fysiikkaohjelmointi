@@ -70,6 +70,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BouncingBallEntity.cpp" />
+    <ClCompile Include="BouncingBallScene.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="DemoBox.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -80,6 +82,8 @@
     <ClCompile Include="ValueBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BouncingBallEntity.h" />
+    <ClInclude Include="BouncingBallScene.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="DemoBox.h" />
     <ClInclude Include="Entity.h" />

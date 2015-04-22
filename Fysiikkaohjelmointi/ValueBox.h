@@ -3,7 +3,7 @@
 class ValueBox:public Box
 {
 public:
-	ValueBox(sf::Window* window);
+	ValueBox(sf::RenderWindow* window, sf::FloatRect rectangle);
 	~ValueBox();
 };
 

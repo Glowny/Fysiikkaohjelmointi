@@ -4,14 +4,15 @@
 class Box
 {
 public:
-	Box(sf::Window* window);
+	Box(sf::RenderWindow* window, sf::FloatRect rectangle);
 	~Box();
 
 	virtual void Draw(){};
 	virtual void Update(){};
 protected:
-	sf::Window* window;
-	sf::Vector2i coordinates;
-	sf::Vector2i size;
+	sf::RenderWindow* window;
+	sf::FloatRect globalRectangle;
+	sf::FloatRect localRectangle;
+	sf::RenderStates state;
 };
 

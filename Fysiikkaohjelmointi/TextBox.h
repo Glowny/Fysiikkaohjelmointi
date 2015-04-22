@@ -3,7 +3,7 @@
 class TextBox:public Box
 {
 public:
-	TextBox(sf::Window* window);
+	TextBox(sf::RenderWindow* window, sf::FloatRect rectangle);
 	~TextBox();
 };
 

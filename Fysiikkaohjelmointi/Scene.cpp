@@ -1,11 +1,11 @@
 #include "Scene.h"
 
 
-Scene::Scene(sf::Window* window)
+Scene::Scene(sf::RenderWindow* window)
 {
-	textBox = new TextBox(window);
-	valueBox = new ValueBox(window);
-	demoBox = new DemoBox(window);
+	textBox = new TextBox(window, sf::FloatRect(0.0f, 0.0f, 489.0f, 1024.0f));
+	valueBox = new ValueBox(window, sf::FloatRect(499.0f, 787.0f, 1280.0f, 1024.0f));
+	demoBox = new DemoBox(window, sf::FloatRect(499.0f, 0.0f, 1280.0f, 777.0f));
 }
 
 

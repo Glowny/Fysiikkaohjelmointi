@@ -1,8 +1,17 @@
 #pragma once
+#include "Entity.h"
+#include "SFML\System.hpp"
+
 class Physics
 {
 public:
-	Physics();
-	~Physics();
+	const static float gravityAcceleration;
+	const static float deltaTime;
+	static void GravityFunc(Entity* entity);
+	
+	static float UpdateSpeed(float speed, float acceleration);
+	static float UpdatePosition(float position, float speed, float acceleration);
+
+	static float InelasticCollision(float speed, float restitution);
 };
 

@@ -1,8 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "BouncingBallScene.h"
+#include "IncludeHeader.h"
+
 int main()
 {
+	arialFont.loadFromFile("arial.ttf");
+	
 	sf::RenderWindow window(sf::VideoMode(1280, 1024), "SFML works!");
 	BouncingBallScene scene(&window);
 	sf::Clock clock;

@@ -48,6 +48,9 @@
     <ClCompile Include="BouncingBallEntity.cpp">
       <Filter>BouncingBall</Filter>
     </ClCompile>
+    <ClCompile Include="VarValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -76,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="BouncingBallEntity.h">
       <Filter>BouncingBall</Filter>
+    </ClInclude>
+    <ClInclude Include="VarValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeHeader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -80,6 +80,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="ValueBox.cpp" />
+    <ClCompile Include="VarValue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BouncingBallEntity.h" />
@@ -87,10 +88,12 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="DemoBox.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="IncludeHeader.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="ValueBox.h" />
+    <ClInclude Include="VarValue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

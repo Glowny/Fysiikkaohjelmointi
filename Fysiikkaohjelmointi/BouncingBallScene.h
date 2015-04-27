@@ -13,7 +13,7 @@ private:
 	sf::Texture texture;
 	BouncingBallEntity ball;
 
-
+	float tempFloatTestMasterfulBoolpaskafix;
 	float physicsLoopTime;
 };
 

@@ -10,17 +10,24 @@ public:
 	void SetPosition(sf::Vector2f position);
 	void SetSpeed(sf::Vector2f speed);
 	void SetNextPosition(sf::Vector2f position);
+	void SetNextSpeed(sf::Vector2f speed);
 
 	sf::Vector2f GetPosition();
 	sf::Vector2f GetSpeed();
 	sf::Vector2f GetNextPosition();
+	sf::Vector2f GetNextSpeed();
+
+	sf::Vector2f* GetPositionPointer();
+	sf::Vector2f* GetSpeedPointer();
+
 	sf::Sprite* GetSprite();
 
 protected:
 	sf::Vector2f currentPosition;
-	sf::Vector2f speed;
+	sf::Vector2f currentSpeed;
 
 	sf::Vector2f nextPosition;
+	sf::Vector2f nextSpeed;
 
 	sf::Sprite sprite;
 };

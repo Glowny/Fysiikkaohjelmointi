@@ -7,12 +7,16 @@
 class VarValue
 {
 public:
-	VarValue(float* valuePointer, std::string valueName);
+	VarValue(float* valuePointer, std::string valueName, sf::Vector2f pos);
 	~VarValue();
 	void Update();
+	void SetValue();
+	void AbortThread();
+
 	float* valuePointer;
 	sf::Text valueName;
 	sf::Text valueText;
 	sf::RectangleShape inputBox;
+	sf::Vector2f position;
 };
 

@@ -1,13 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <SFML/System.hpp>
 #include "BouncingBallScene.h"
 #include "IncludeHeader.h"
+#include "MouseCoordinateWrapper.h"
 
 int main()
 {
-	arialFont.loadFromFile("arial.ttf");
-	
 	sf::RenderWindow window(sf::VideoMode(1280, 1024), "SFML works!");
+	MouseCoordinateWrapper::Initialize(&window);
+
 	BouncingBallScene scene(&window);
 	sf::Clock clock;
 	sf::Time time;

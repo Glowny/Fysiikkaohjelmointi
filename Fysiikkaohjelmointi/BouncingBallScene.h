@@ -9,11 +9,14 @@ public:
 	void Update(float dt);
 private:
 	void UpdatePhysics(float dt);
+	void UpdateValueBox(float dt);
 
 	sf::Texture texture;
 	BouncingBallEntity ball;
 
 	float tempFloatTestMasterfulBoolpaskafix;
+
+	float valueBoxLoopTime;
 	float physicsLoopTime;
 };
 

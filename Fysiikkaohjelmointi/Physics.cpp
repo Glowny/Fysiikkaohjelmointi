@@ -1,14 +1,14 @@
 #include "Physics.h"
 
 const float Physics::gravityAcceleration = 981;
-const float Physics::deltaTime = 1.0f/120.0f;
+const float Physics::deltaTime = 1.0f/120.0;
 
 void Physics::GravityFunc(Entity* entity)
 {
-	entity->SetSpeed(entity->GetNextSpeed());
 	entity->SetPosition(entity->GetNextPosition());
-	entity->SetNextSpeed(sf::Vector2f(entity->GetSpeed().x, UpdateSpeed(entity->GetSpeed().y, gravityAcceleration)));
+	entity->SetSpeed(entity->GetNextSpeed());
 	entity->SetNextPosition(sf::Vector2f(entity->GetPosition().x, UpdatePosition(entity->GetPosition().y,entity->GetSpeed().y, gravityAcceleration)));
+	entity->SetNextSpeed(sf::Vector2f(entity->GetSpeed().x, UpdateSpeed(entity->GetSpeed().y, gravityAcceleration)));
 }
 
 float Physics::UpdateSpeed(float speed, float acceleration)

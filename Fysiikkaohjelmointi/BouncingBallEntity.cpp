@@ -7,6 +7,7 @@ BouncingBallEntity::BouncingBallEntity(float mass, float restitutionMultiplier,s
 	this->restitutionMultiplier = restitutionMultiplier;
 	this->sprite = sf::Sprite(sprite);
 	this->sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
+	radius = sprite.getLocalBounds().width / 2;
 }
 
 

@@ -2,7 +2,7 @@
 
 DemoBox::DemoBox(sf::RenderWindow* window, sf::FloatRect rectangle) : Box(window, rectangle)
 {
-	origo = sf::Vector2f(390, 600);
+	origo = sf::Vector2f(390, 500);
 	state.transform = state.transform.translate(origo);
 }
 

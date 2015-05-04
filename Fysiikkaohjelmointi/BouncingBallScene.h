@@ -10,9 +10,11 @@ public:
 private:
 	void UpdatePhysics(float dt);
 	void UpdateValueBox(float dt);
+	bool CheckCollision(BouncingBallEntity* first, BouncingBallEntity* second);
 
 	sf::Texture texture;
-	BouncingBallEntity ball;
+	BouncingBallEntity ball1;
+	BouncingBallEntity ball2;
 
 	float tempFloatTestMasterfulBoolpaskafix;
 

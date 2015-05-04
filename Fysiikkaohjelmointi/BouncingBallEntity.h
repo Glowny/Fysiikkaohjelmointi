@@ -8,6 +8,7 @@ public:
 	BouncingBallEntity(float mass, float restitutionMultiplier, sf::Sprite sprite);
 	~BouncingBallEntity();
 	float mass;
+	float radius;
 	float restitutionMultiplier;
 };
 

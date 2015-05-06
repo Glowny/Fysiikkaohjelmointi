@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "BouncingBallEntity.h"
+#include <vector>
 class BouncingBallScene:public Scene
 {
 public:
@@ -8,13 +9,13 @@ public:
 	~BouncingBallScene();
 	void Update(float dt);
 private:
+	std::vector<BouncingBallEntity*> ballVector;
 	void UpdatePhysics(float dt);
 	void UpdateValueBox(float dt);
 	bool CheckCollision(BouncingBallEntity* first, BouncingBallEntity* second);
 
 	sf::Texture texture;
-	BouncingBallEntity ball1;
-	BouncingBallEntity ball2;
+
 
 	float tempFloatTestMasterfulBoolpaskafix;
 

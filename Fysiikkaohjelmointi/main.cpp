@@ -8,6 +8,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 1024), "SFML works!");
+
 	MouseCoordinateWrapper::Initialize(&window);
 
 	BouncingBallScene scene(&window);

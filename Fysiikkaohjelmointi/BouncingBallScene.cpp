@@ -8,30 +8,55 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 
 	texture.loadFromFile("pallo.png");
 	texture.setSmooth(true);
-	ball1 = BouncingBallEntity(1.0f, 0.9f, sf::Sprite(texture));
-	ball1.SetPosition(sf::Vector2f(-250, -600));
-	demoBox->drawVector.push_back(ball1.GetSprite());
-	
-	valueBox->AddVarValue(&ball1.GetPositionPointer()->x, "1 Position X");
-	valueBox->AddVarValue(&ball1.GetPositionPointer()->y, "1 Position Y");
-	valueBox->AddVarValue(&ball1.GetSpeedPointer()->x, "1 Speed X");
-	valueBox->AddVarValue(&ball1.GetSpeedPointer()->y, "1 Speed Y");
 
-	ball2 = BouncingBallEntity(2.0f, 0.5f, sf::Sprite(texture));
-	ball2.SetPosition(sf::Vector2f(250, -600));
-	demoBox->drawVector.push_back(ball2.GetSprite());
+	BouncingBallEntity* ball1 = new BouncingBallEntity(1.0f, 0.7f, sf::Sprite(texture));
+	ball1->SetPosition(sf::Vector2f(-200, -300));
+	demoBox->drawVector.push_back(ball1->GetSprite());
+	valueBox->AddVarValue(&ball1->GetPositionPointer()->x, "1 Position X");
+	valueBox->AddVarValue(&ball1->GetPositionPointer()->y, "1 Position Y");
+	valueBox->AddVarValue(&ball1->GetSpeedPointer()->x, "1 Speed X");
+	valueBox->AddVarValue(&ball1->GetSpeedPointer()->y, "1 Speed Y");
+	ballVector.push_back(ball1);
 
-	ball2.SetSpeed(sf::Vector2f(-150, 0));
+	BouncingBallEntity* ball2 = new BouncingBallEntity(5.0f, 0.4f, sf::Sprite(texture)); 
+	ball2->GetSprite()->setColor(sf::Color::Blue);
+	ball2->SetPosition(sf::Vector2f(0, -500));
+	demoBox->drawVector.push_back(ball2->GetSprite());
+	valueBox->AddVarValue(&ball2->GetPositionPointer()->x, "2 Position X");
+	valueBox->AddVarValue(&ball2->GetPositionPointer()->y, "2 Position Y");
+	valueBox->AddVarValue(&ball2->GetSpeedPointer()->x, "2 Speed X");
+	valueBox->AddVarValue(&ball2->GetSpeedPointer()->y, "2 Speed Y");
+	ballVector.push_back(ball2);
 
-	valueBox->AddVarValue(&ball2.GetPositionPointer()->x, "2 Position X");
-	valueBox->AddVarValue(&ball2.GetPositionPointer()->y, "2 Position Y");
-	valueBox->AddVarValue(&ball2.GetSpeedPointer()->x, "2 Speed X");
-	valueBox->AddVarValue(&ball2.GetSpeedPointer()->y, "2 Speed Y");
+	BouncingBallEntity* ball3 = new BouncingBallEntity(10.0f, 0.8f, sf::Sprite(texture));
+	ball3->GetSprite()->setColor(sf::Color::Green);
+	ball3->SetPosition(sf::Vector2f(200, -300));
+	demoBox->drawVector.push_back(ball3->GetSprite());
+	valueBox->AddVarValue(&ball3->GetPositionPointer()->x, "3 Position X");
+	valueBox->AddVarValue(&ball3->GetPositionPointer()->y, "3 Position Y");
+	valueBox->AddVarValue(&ball3->GetSpeedPointer()->x, "3 Speed X");
+	valueBox->AddVarValue(&ball3->GetSpeedPointer()->y, "3 Speed Y");
+	ballVector.push_back(ball3);
+
+	ball1->SetSpeed(sf::Vector2f(300, 500));
+	ball2->SetSpeed(sf::Vector2f(400, 1010));
+	ball3->SetSpeed(sf::Vector2f(100, 10));
+
+	for (int i = 0; i < 10; i++)
+	{
+		BouncingBallEntity* newBall = new BouncingBallEntity(i*20.0f, 0.9, sf::Sprite(texture));
+		newBall->SetPosition(sf::Vector2f(-350 + i*64, -350));
+		newBall->GetSprite()->setColor(sf::Color(150 + i * 10, i * 20, i * 25));
+		demoBox->drawVector.push_back(newBall->GetSprite());
+		ballVector.push_back(newBall);
+	}
 
 }
 
 BouncingBallScene::~BouncingBallScene()
 {
+	for (int i = 0; i < ballVector.size(); i++)
+		delete ballVector[i];
 }
 
 void BouncingBallScene::Update(float dt)
@@ -47,45 +72,37 @@ void BouncingBallScene::UpdatePhysics(float dt)
 	{
 		physicsLoopTime -= Physics::deltaTime;
 		
-		Physics::GravityFunc(&ball1);
-		Physics::GravityFunc(&ball2);
+		for (int i = 0; i < ballVector.size(); i++)
+		{
+			Physics::GravityFunc(ballVector[i]);
 
-		if (ball1.GetNextPosition().y - ball1.radius > 0)
-		{
-			ball1.SetPosition(sf::Vector2f(ball1.GetPosition().x, ball1.radius));
-			ball1.SetSpeed(sf::Vector2f(ball1.GetSpeed().x, Physics::InelasticCollision(ball1.GetSpeed().y, ball1.restitutionMultiplier)));
-		}
-		if (ball2.GetNextPosition().y - ball2.radius > 0)
-		{
-			ball2.SetPosition(sf::Vector2f(ball2.GetPosition().x, ball2.radius));
-			ball2.SetSpeed(sf::Vector2f(ball2.GetSpeed().x, Physics::InelasticCollision(ball2.GetSpeed().y, ball2.restitutionMultiplier)));
-		}
 
-		if (ball1.GetNextPosition().x - ball1.radius < -390)
-		{
-			ball1.SetPosition(sf::Vector2f(-390+ball1.radius, ball1.GetPosition().y));
-			ball1.SetSpeed(sf::Vector2f(Physics::InelasticCollision(ball1.GetSpeed().x, ball1.restitutionMultiplier), ball1.GetSpeed().y));
-		}
-		if (ball2.GetNextPosition().x + ball2.radius > 390)
-		{
-			ball1.SetPosition(sf::Vector2f(390-ball1.radius, ball1.GetPosition().y));
-			ball1.SetSpeed(sf::Vector2f(Physics::InelasticCollision(ball1.GetSpeed().x, ball1.restitutionMultiplier), ball1.GetSpeed().y));
-		}
 
-		if (ball2.GetNextPosition().x - ball2.radius < -390)
-		{
-			ball2.SetPosition(sf::Vector2f(-390 + ball2.radius, ball2.GetPosition().y));
-			ball2.SetSpeed(sf::Vector2f(Physics::InelasticCollision(ball2.GetSpeed().x, ball2.restitutionMultiplier), ball2.GetSpeed().y));
-		}
-		if (ball2.GetNextPosition().x + ball2.radius > 390)
-		{
-			ball2.SetPosition(sf::Vector2f(390 - ball2.radius, ball2.GetPosition().y));
-			ball2.SetSpeed(sf::Vector2f(Physics::InelasticCollision(ball2.GetSpeed().x, ball2.restitutionMultiplier), ball2.GetSpeed().y));
-		}
+			if (ballVector[i]->GetNextPosition().y - ballVector[i]->radius > 0)
+			{
+				ballVector[i]->SetPosition(sf::Vector2f(ballVector[i]->GetPosition().x, ballVector[i]->radius));
+				ballVector[i]->SetSpeed(sf::Vector2f(ballVector[i]->GetSpeed().x, Physics::InelasticCollision(ballVector[i]->GetSpeed().y, ballVector[i]->restitutionMultiplier)));
+			}
+		
+			if (ballVector[i]->GetNextPosition().x - ballVector[i]->radius < -390)
+			{
+				ballVector[i]->SetPosition(sf::Vector2f(-390 + ballVector[i]->radius, ballVector[i]->GetPosition().y));
+				ballVector[i]->SetSpeed(sf::Vector2f(Physics::InelasticCollision(ballVector[i]->GetSpeed().x, ballVector[i]->restitutionMultiplier), ballVector[i]->GetSpeed().y));
+			}
+			if (ballVector[i]->GetNextPosition().x + ballVector[i]->radius > 390)
+			{
+				ballVector[i]->SetPosition(sf::Vector2f(390 - ballVector[i]->radius, ballVector[i]->GetPosition().y));
+				ballVector[i]->SetSpeed(sf::Vector2f(Physics::InelasticCollision(ballVector[i]->GetSpeed().x, ballVector[i]->restitutionMultiplier), ballVector[i]->GetSpeed().y));
+			}
 
-		if (CheckCollision(&ball1, &ball2))
-		{
-			Physics::InelasticObjectCollision(&ball1, &ball2);
+			for (int j = i+1; j < ballVector.size(); j++)
+			{
+				if (CheckCollision(ballVector[i], ballVector[j]))
+				{
+					Physics::InelasticObjectCollision(ballVector[i], ballVector[j]);
+				}
+			}
+			
 		}
 	}
 }

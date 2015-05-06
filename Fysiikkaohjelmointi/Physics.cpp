@@ -1,7 +1,7 @@
 #include "Physics.h"
 
-const float Physics::gravityAcceleration = 981;
-const float Physics::deltaTime = 1.0f/120.0;
+const float Physics::gravityAcceleration = 9.81;
+const float Physics::deltaTime = 1.0f/480.0;
 
 void Physics::GravityFunc(Entity* entity)
 {
@@ -28,34 +28,84 @@ float Physics::InelasticCollision(float speed, float restitution)
 
 void Physics::InelasticObjectCollision(BouncingBallEntity* first, BouncingBallEntity* second)
 {
-	float tempX = first->GetNextPosition().x - second->GetNextPosition().x;
-	float tempY = first->GetNextPosition().y - second->GetNextPosition().y;
-	if (tempY > 0)
-		tempY *= -1;
-	if (tempX > 0)
-		tempX *= -1;
+	float tempX = first->GetNextPosition().x - second->GetNextPosition().x; // negatiivinen = first vasemmalla
+	float tempY = first->GetNextPosition().y - second->GetNextPosition().y; // negatiivinen = first päällä
+
+	//if (tempY > 0)
+	//	tempY *= -1;
+	//if (tempX > 0)
+	//	tempX *= -1;
 
 	float angle = atan(tempY / tempX);
+	
+	float collisionPositionX = cos(angle) * tempX / 2;
+//	if (tempX < 0)
+//		collisionPositionX -= second->GetNextPosition().x;
+//	else
+		collisionPositionX += second->GetNextPosition().x;
 
-	float firstNormalSpeedBefore = cos(angle)*first->GetNextSpeed().x + sin(angle)*-first->GetNextSpeed().y;
-	float secondNormalSpeedBefore = cos(angle)*second->GetNextSpeed().x + sin(angle)*-second->GetNextSpeed().y;
+		float collisionPositionY = sin(angle) * tempY / 2;
 
-	float firstNormalSpeedAfter = (first->restitutionMultiplier*second->mass*(secondNormalSpeedBefore - firstNormalSpeedBefore
-		) + first->mass*firstNormalSpeedBefore + second->mass*secondNormalSpeedBefore) / (first->mass + second->mass);
+		collisionPositionY += second->GetNextPosition().y;
 
-	float secondNormalSpeedAfter = (second->restitutionMultiplier*first->mass*(firstNormalSpeedBefore - secondNormalSpeedBefore
-		) + first->mass*firstNormalSpeedBefore + second->mass*secondNormalSpeedBefore) / (first->mass + second->mass);
+	float temp1X, temp1Y, temp2X, temp2Y = 0;
+	
+	if (tempX < 0)
+	{
+		temp1X = collisionPositionX - cos(angle)*first->radius;
+		temp2X = collisionPositionX + cos(angle)*second->radius;
+	}
+	else
+	{
+		temp1X = collisionPositionX + cos(angle)*first->radius;
+		temp2X = collisionPositionX - cos(angle)*second->radius;
+	}
+	if (tempY < 0)
+	{
+		temp1Y = collisionPositionY - sin(angle)*first->radius;
+		temp2Y = collisionPositionY + sin(angle)*second->radius;
+	}
+	else
+	{
+		temp1Y = collisionPositionY + sin(angle)*first->radius;
+		temp2Y = collisionPositionY - sin(angle)*second->radius;
+	}
 
-	float tangentAngle = angle;// +(3.1415 / 2);
+	first->SetPosition(sf::Vector2f(temp1X, temp1Y));
+	second->SetPosition(sf::Vector2f(temp2X, temp2Y));
 
-	float firstTangentSpeed = cos(tangentAngle)*first->GetNextSpeed().x - sin(tangentAngle)*first->GetNextSpeed().y;
-	float secondTangentSpeed = cos(tangentAngle)*second->GetNextSpeed().x - sin(tangentAngle)*second->GetNextSpeed().y;
+	float firstNormalSpeedBefore  = cos(angle) * first->GetNextSpeed().x  + sin(angle) * first->GetNextSpeed().y;
+	float secondNormalSpeedBefore = cos(angle) * second->GetNextSpeed().x + sin(angle) * second->GetNextSpeed().y;
 
-	float firstFinalX = sin(angle)*(firstNormalSpeedAfter + firstTangentSpeed);
+	float restitutionAverage = (first->restitutionMultiplier + second->restitutionMultiplier) * 0.5f;
+	float firstNormalSpeedAfter = ((first->mass - restitutionAverage * second->mass) / (first->mass + second->mass)) * firstNormalSpeedBefore
+		+ (((1 + restitutionAverage) * second->mass) / (first->mass + second->mass)) * secondNormalSpeedBefore;
+
+	float secondNormalSpeedAfter = (((1 + restitutionAverage) * first->mass) / (first->mass + second->mass)) * firstNormalSpeedBefore
+		+ ((second->mass - restitutionAverage * first->mass) / (first->mass + second->mass)) * secondNormalSpeedBefore;
+
+	//float firstNormalSpeedAfter = (first->restitutionMultiplier * second->mass * (secondNormalSpeedBefore - firstNormalSpeedBefore)
+	//	+ first->mass * firstNormalSpeedBefore + second->mass*secondNormalSpeedBefore) / (first->mass + second->mass);
+
+	//float secondNormalSpeedAfter = (second->restitutionMultiplier * first->mass * (firstNormalSpeedBefore - secondNormalSpeedBefore)
+	//	+ first->mass * firstNormalSpeedBefore + second->mass*secondNormalSpeedBefore) / (first->mass + second->mass);
+
+
+	float firstTangentSpeed  = cos(angle)*first->GetNextSpeed().y  - sin(angle)*first->GetNextSpeed().x;
+	float secondTangentSpeed = cos(angle)*second->GetNextSpeed().y - sin(angle)*second->GetNextSpeed().x;
+
+	float firstFinalX = firstNormalSpeedAfter * cos(angle) - firstTangentSpeed * sin(angle);
+	float firstFinalY = firstNormalSpeedAfter * sin(angle) + firstTangentSpeed * cos(angle);
+
+
+	float secondFinalX = secondNormalSpeedAfter * cos(angle) - secondTangentSpeed * sin(angle);
+	float secondFinalY = secondNormalSpeedAfter * sin(angle) + secondTangentSpeed * cos(angle);
+
+	/*float firstFinalX = sin(angle)*(firstNormalSpeedAfter + firstTangentSpeed);
 	float firstFinalY = cos(angle)*(firstNormalSpeedAfter + firstTangentSpeed);
 
 	float secondFinalX = cos(angle)*(secondNormalSpeedAfter + secondTangentSpeed);
-	float secondFinalY = sin(angle)*(secondNormalSpeedAfter + secondTangentSpeed);
+	float secondFinalY = sin(angle)*(secondNormalSpeedAfter + secondTangentSpeed);*/
 
 	first->SetSpeed(sf::Vector2f(firstFinalX, firstFinalY));
 	second->SetSpeed(sf::Vector2f(secondFinalX, secondFinalY));

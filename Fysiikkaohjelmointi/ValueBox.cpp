@@ -19,9 +19,9 @@ void ValueBox::InitializeInput(std::string* stringPointer)
 
 void ValueBox::AddVarValue(float* valuePointer, std::string name)
 {
-	int apumx = varValueVector.size() % 2;
-	int apumy = (varValueVector.size() - apumx) / 2;
-	varValueVector.push_back(VarValue(valuePointer, name, sf::Vector2f(205 * apumx, 55 * apumy)));
+	int apumx = varValueVector.size() % 4;
+	int apumy = (varValueVector.size() - apumx) / 3;
+	varValueVector.push_back(VarValue(valuePointer, name, sf::Vector2f(10 + 192 * apumx, 10 + 56 * apumy)));
 }
 
 void ValueBox::Update()
@@ -66,7 +66,7 @@ void ValueBox::CheckMousePress()
 			if (activeBox == nullptr)
 			{
 				activeBox = &varValueVector[i];
-				activeBox->inputBox.setFillColor(sf::Color::Blue);
+				activeBox->inputBox.setFillColor(sf::Color(150, 150, 150));
 			}
 			else if (activeBox != nullptr && activeBox != &varValueVector[i])
 			{
@@ -94,7 +94,7 @@ sf::FloatRect ValueBox::MoveToLocalCoordinates(sf::FloatRect rect)
 void ValueBox::ReleaseActiveBox()
 {
 	SetVarValue();
-	activeBox->inputBox.setFillColor(sf::Color::Green);
+	activeBox->inputBox.setFillColor(sf::Color(200, 200, 200));
 	activeBox = nullptr;
 	inputString->clear();
 }

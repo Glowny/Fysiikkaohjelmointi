@@ -1,6 +1,6 @@
 #include "Physics.h"
 
-const float Physics::gravityAcceleration = 9.81;
+const float Physics::gravityAcceleration = 0;
 const float Physics::deltaTime = 1.0f/480.0;
 
 void Physics::GravityFunc(Entity* entity)
@@ -31,44 +31,51 @@ void Physics::InelasticObjectCollision(BouncingBallEntity* first, BouncingBallEn
 	float tempX = first->GetNextPosition().x - second->GetNextPosition().x; // negatiivinen = first vasemmalla
 	float tempY = first->GetNextPosition().y - second->GetNextPosition().y; // negatiivinen = first päällä
 
-	//if (tempY > 0)
-	//	tempY *= -1;
-	//if (tempX > 0)
-	//	tempX *= -1;
 
 	float angle = atan(tempY / tempX);
 	
-	float collisionPositionX = cos(angle) * tempX / 2;
-//	if (tempX < 0)
-//		collisionPositionX -= second->GetNextPosition().x;
-//	else
-		collisionPositionX += second->GetNextPosition().x;
+	float collisionPositionX = tempX / 2;
+	float collisionPositionY = tempY / 2;
 
-		float collisionPositionY = sin(angle) * tempY / 2;
+	collisionPositionX += second->GetNextPosition().x;
+	collisionPositionY += second->GetNextPosition().y;
 
-		collisionPositionY += second->GetNextPosition().y;
-
-	float temp1X, temp1Y, temp2X, temp2Y = 0;
+	float temp1X = 0;
+	float temp1Y = 0;
+	float temp2X = 0;
+	float temp2Y = 0;
 	
-	if (tempX < 0)
+	if (tempX < 0 && tempY > 0)
 	{
 		temp1X = collisionPositionX - cos(angle)*first->radius;
+		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*first->radius;
+
 		temp2X = collisionPositionX + cos(angle)*second->radius;
+		temp2Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*second->radius;
 	}
-	else
+	else if (tempX < 0 && tempY < 0)
+	{
+		temp1X = collisionPositionX - cos(angle)*first->radius;
+		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*first->radius;
+
+		temp2X = collisionPositionX + cos(angle)*second->radius;
+		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*second->radius;
+	}
+	else if (tempX > 0 && tempY < 0)
 	{
 		temp1X = collisionPositionX + cos(angle)*first->radius;
+		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*first->radius;
+
 		temp2X = collisionPositionX - cos(angle)*second->radius;
+		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*second->radius;
 	}
-	if (tempY < 0)
+	else if (tempX > 0 && tempY > 0)
 	{
-		temp1Y = collisionPositionY - sin(angle)*first->radius;
-		temp2Y = collisionPositionY + sin(angle)*second->radius;
-	}
-	else
-	{
-		temp1Y = collisionPositionY + sin(angle)*first->radius;
-		temp2Y = collisionPositionY - sin(angle)*second->radius;
+		temp1X = collisionPositionX + cos(angle)*first->radius;
+		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*first->radius;
+
+		temp2X = collisionPositionX - cos(angle)*second->radius;
+		temp2Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*second->radius;
 	}
 
 	first->SetPosition(sf::Vector2f(temp1X, temp1Y));

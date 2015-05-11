@@ -8,7 +8,9 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 1024), "SFML works!");
-
+	sf::Texture bg;
+	bg.loadFromFile("kauniitdimensiot.png");
+	sf::Sprite sprite(bg);
 	MouseCoordinateWrapper::Initialize(&window);
 
 	BouncingBallScene scene(&window);
@@ -47,6 +49,7 @@ int main()
 
 		scene.Update(dt);
 		window.clear();
+		window.draw(sprite);
 		scene.Draw();
 		window.display();
 	}

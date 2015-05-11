@@ -7,7 +7,7 @@ VarValue::VarValue(float* valuePointer, std::string valueName, sf::Vector2f pos)
 	arialFont.loadFromFile("arial.ttf");
 	this->valuePointer = valuePointer;
 	this->valueName.setFont(arialFont);
-	this->valueName.setColor(sf::Color::Magenta);
+	this->valueName.setColor(sf::Color::Black);
 	this->valueName.setCharacterSize(16);
 	this->valueName.setStyle(sf::Text::Regular);
 
@@ -17,8 +17,11 @@ VarValue::VarValue(float* valuePointer, std::string valueName, sf::Vector2f pos)
 	this->valueText.setString(std::to_string(*valuePointer));
 	valueText.setPosition(0, 18);
 	
-	inputBox.setFillColor(sf::Color::Green);
-	inputBox.setSize(sf::Vector2f(200.0f, 50.0f));
+	inputBox.setFillColor(sf::Color(200, 200, 200));
+	inputBox.setSize(sf::Vector2f(187, 51.0f));
+
+	inputBox.setOutlineThickness(1);
+	inputBox.setOutlineColor(sf::Color::Black);
 
 	this->valueName.setPosition(position);
 	this->valueText.setPosition(position.x, position.y +18);

@@ -34,12 +34,8 @@ void VarValue::Update()
 	valueText.setString(std::to_string(*valuePointer));
 }
 
-void VarValue::SetValue()
+void VarValue::SetValue(std::string* inputString)
 {
-	
+	valueText.setString(*inputString);
 }
 
-void VarValue::AbortThread()
-{
-
-}

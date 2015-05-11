@@ -12,8 +12,11 @@ int main()
 	MouseCoordinateWrapper::Initialize(&window);
 
 	BouncingBallScene scene(&window);
+	std::string inputString;
+	scene.SetInputString(&inputString);
 	sf::Clock clock;
 	sf::Time time;
+	
 	float dt;
 	float fpsUpdate = 0;
 
@@ -24,6 +27,13 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::TextEntered)
+			{
+				if (event.text.unicode < 128)
+				{
+					inputString += static_cast<char>(event.text.unicode);
+				}
+			}
 		}
 		time = clock.restart();
 		dt = time.asSeconds();

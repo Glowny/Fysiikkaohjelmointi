@@ -6,7 +6,7 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 	physicsLoopTime = 0;
 	valueBoxLoopTime = 0;
 
-	texture.loadFromFile("pallo.png");
+	texture.loadFromFile("Ball-8.png");
 	texture.setSmooth(true);
 
 	BouncingBallEntity* ball1 = new BouncingBallEntity(1.0f, 0.7f, sf::Sprite(texture));
@@ -42,14 +42,14 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 	ball2->SetSpeed(sf::Vector2f(400, 1010));
 	ball3->SetSpeed(sf::Vector2f(100, 10));
 
-	for (int i = 0; i < 10; i++)
-	{
-		BouncingBallEntity* newBall = new BouncingBallEntity(i*20.0f, 0.9, sf::Sprite(texture));
-		newBall->SetPosition(sf::Vector2f(-350 + i*64, -350));
-		newBall->GetSprite()->setColor(sf::Color(150 + i * 10, i * 20, i * 25));
-		demoBox->drawVector.push_back(newBall->GetSprite());
-		ballVector.push_back(newBall);
-	}
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	BouncingBallEntity* newBall = new BouncingBallEntity(i*20.0f, 0.9, sf::Sprite(texture));
+	//	newBall->SetPosition(sf::Vector2f(-350 + i*64, -350));
+	//	newBall->GetSprite()->setColor(sf::Color(150 + i * 10, i * 20, i * 25));
+	//	demoBox->drawVector.push_back(newBall->GetSprite());
+	//	ballVector.push_back(newBall);
+	//}
 
 }
 
@@ -109,6 +109,7 @@ void BouncingBallScene::UpdatePhysics(float dt)
 
 void BouncingBallScene::UpdateValueBox(float dt)
 {
+	valueBox->CheckMousePress();
 	valueBoxLoopTime += dt;
 	if (valueBoxLoopTime >= 0.2f)
 	{

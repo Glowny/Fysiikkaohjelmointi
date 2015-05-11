@@ -10,7 +10,7 @@ public:
 	VarValue(float* valuePointer, std::string valueName, sf::Vector2f pos);
 	~VarValue();
 	void Update();
-	void SetValue();
+	void SetValue(std::string* inputString);
 	void AbortThread();
 
 	float* valuePointer;

@@ -1,5 +1,5 @@
 #include "ValueBox.h"
-
+#include <stdexcept>
 
 ValueBox::ValueBox(sf::RenderWindow* window, sf::FloatRect rectangle) : Box(window, rectangle)
 {
@@ -10,6 +10,11 @@ ValueBox::ValueBox(sf::RenderWindow* window, sf::FloatRect rectangle) : Box(wind
 ValueBox::~ValueBox()
 {
 
+}
+
+void ValueBox::InitializeInput(std::string* stringPointer)
+{
+	inputString = stringPointer;
 }
 
 void ValueBox::AddVarValue(float* valuePointer, std::string name)
@@ -23,29 +28,12 @@ void ValueBox::Update()
 {
 	for (int i = 0; i < varValueVector.size(); i++)
 	{
-		sf::FloatRect temp = MoveToLocalCoordinates(varValueVector[i].inputBox.getGlobalBounds());
-		
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && temp.contains(MouseCoordinateWrapper::GetMousePosition()))
-		{
-			if (activeBox == nullptr)
-			{
-				activeBox = &varValueVector[i];
-				activeBox->inputBox.setFillColor(sf::Color::Blue);
-			}
-			else if (activeBox != nullptr && activeBox != &varValueVector[i])
-			{
-				activeBox->AbortThread();
-				activeBox->inputBox.setFillColor(sf::Color::Green);
-				activeBox = nullptr;
-			}
-		}
-
 		varValueVector[i].Update();
 	}
 
 	if (activeBox != nullptr)
 	{
-		activeBox->SetValue();
+		activeBox->SetValue(inputString);
 	}
 }
 
@@ -59,6 +47,39 @@ void ValueBox::Draw()
 	}
 }
 
+void ValueBox::CheckMousePress()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && activeBox != nullptr)
+		ReleaseActiveBox();
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		return;
+
+	bool pressedNothing = true;
+
+	for (int i = 0; i < varValueVector.size(); i++)
+	{
+		sf::FloatRect temp = MoveToLocalCoordinates(varValueVector[i].inputBox.getGlobalBounds());
+
+		if(temp.contains(MouseCoordinateWrapper::GetMousePosition()))
+		{
+			pressedNothing = false;
+			if (activeBox == nullptr)
+			{
+				activeBox = &varValueVector[i];
+				activeBox->inputBox.setFillColor(sf::Color::Blue);
+			}
+			else if (activeBox != nullptr && activeBox != &varValueVector[i])
+			{
+				ReleaseActiveBox();
+			}
+		}
+	}
+	if (activeBox != nullptr && pressedNothing)
+	{
+		ReleaseActiveBox();
+	}
+}
+
 // private
 
 sf::FloatRect ValueBox::MoveToLocalCoordinates(sf::FloatRect rect)
@@ -68,4 +89,28 @@ sf::FloatRect ValueBox::MoveToLocalCoordinates(sf::FloatRect rect)
 	temp.top = rect.top + 787.0f;
 
 	return temp;
+}
+
+void ValueBox::ReleaseActiveBox()
+{
+	SetVarValue();
+	activeBox->inputBox.setFillColor(sf::Color::Green);
+	activeBox = nullptr;
+	inputString->clear();
+}
+
+void ValueBox::SetVarValue()
+{
+
+	float newValue;
+	try
+	{
+		newValue = std::stof(*inputString);
+	}
+	catch (std::invalid_argument& e)
+	{
+		return;
+	}
+
+	*activeBox->valuePointer = newValue;	// Asettaa tällä hetkellä vanhan arvon kohdalle.
 }

@@ -57,12 +57,16 @@ sf::Vector2f Entity::GetNextSpeed()
 
 sf::Vector2f* Entity::GetPositionPointer()
 {
-	return &currentPosition;
+	//return &currentPosition;
+	return &nextPosition;
 }
 
 sf::Vector2f* Entity::GetSpeedPointer()
 {
-	return &currentSpeed;
+	//return &currentSpeed;
+	return &nextSpeed;		// Ongelma: N‰ytt‰‰ v‰‰r‰t, ei-tarkastetut arvot outputissa. Ongelmana on se, ettei voida asettaa muuten oikeita arvoja.
+							// Sill‰ vanhojen arvojen pointteriin asetettaessa menev‰t hukkaan.
+							// Pit‰isi kai luoda uusi pointteri nextSpeedille, vai olisko struct float[2]* parempi?
 }
 
 

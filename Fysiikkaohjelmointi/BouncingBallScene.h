@@ -15,7 +15,7 @@ private:
 	bool CheckCollision(BouncingBallEntity* first, BouncingBallEntity* second);
 
 	sf::Texture texture;
-
+	sf::Texture texture2;
 
 	float tempFloatTestMasterfulBoolpaskafix;
 

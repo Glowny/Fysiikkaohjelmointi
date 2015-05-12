@@ -1,6 +1,6 @@
 #include "Physics.h"
 
-const float Physics::gravityAcceleration = 0;
+const float Physics::gravityAcceleration = 9.81;
 const float Physics::deltaTime = 1.0f/480.0;
 
 void Physics::GravityFunc(Entity* entity)
@@ -45,37 +45,39 @@ void Physics::InelasticObjectCollision(BouncingBallEntity* first, BouncingBallEn
 	float temp2X = 0;
 	float temp2Y = 0;
 	
+	float avg = (first->radius + second->radius) / 2;
+
 	if (tempX < 0 && tempY > 0)
 	{
-		temp1X = collisionPositionX - cos(angle)*first->radius;
-		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*first->radius;
+		temp1X = collisionPositionX - cos(angle)*avg;
+		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*avg;
 
-		temp2X = collisionPositionX + cos(angle)*second->radius;
-		temp2Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*second->radius;
+		temp2X = collisionPositionX + cos(angle)*avg;
+		temp2Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*avg;
 	}
 	else if (tempX < 0 && tempY < 0)
 	{
-		temp1X = collisionPositionX - cos(angle)*first->radius;
-		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*first->radius;
+		temp1X = collisionPositionX - cos(angle)*avg;
+		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*avg;
 
-		temp2X = collisionPositionX + cos(angle)*second->radius;
-		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*second->radius;
+		temp2X = collisionPositionX + cos(angle)*avg;
+		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*avg;
 	}
 	else if (tempX > 0 && tempY < 0)
 	{
-		temp1X = collisionPositionX + cos(angle)*first->radius;
-		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*first->radius;
+		temp1X = collisionPositionX + cos(angle)*avg;
+		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*avg;
 
-		temp2X = collisionPositionX - cos(angle)*second->radius;
-		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*second->radius;
+		temp2X = collisionPositionX - cos(angle)*avg;
+		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*avg;
 	}
 	else if (tempX > 0 && tempY > 0)
 	{
-		temp1X = collisionPositionX + cos(angle)*first->radius;
-		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*first->radius;
+		temp1X = collisionPositionX + cos(angle)*avg;
+		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*avg;
 
-		temp2X = collisionPositionX - cos(angle)*second->radius;
-		temp2Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*second->radius;
+		temp2X = collisionPositionX - cos(angle)*avg;
+		temp2Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*avg;
 	}
 
 	first->SetPosition(sf::Vector2f(temp1X, temp1Y));

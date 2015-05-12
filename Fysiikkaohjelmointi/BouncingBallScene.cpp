@@ -9,6 +9,9 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 	texture.loadFromFile("pallo.png");
 	texture.setSmooth(true);
 
+	texture2.loadFromFile("Ball-8.png");
+	texture.setSmooth(true);
+
 	BouncingBallEntity* ball1 = new BouncingBallEntity(1.0f, 1.0f, sf::Sprite(texture));
 	ball1->SetPosition(sf::Vector2f(20, -300));
 	ball1->GetSprite()->setColor(sf::Color::Red);
@@ -18,16 +21,17 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 	valueBox->AddVarValue(&ball1->GetSpeedPointer()->x, "1 Speed X");
 	valueBox->AddVarValue(&ball1->GetSpeedPointer()->y, "1 Speed Y");
 	ballVector.push_back(ball1);
-	//
-	//BouncingBallEntity* ball2 = new BouncingBallEntity(5.0f, 1.0f, sf::Sprite(texture)); 
-	//ball2->GetSprite()->setColor(sf::Color::Blue);
-	//ball2->SetPosition(sf::Vector2f(0, 0));
-	//demoBox->drawVector.push_back(ball2->GetSprite());
-	//valueBox->AddVarValue(&ball2->GetPositionPointer()->x, "2 Position X");
-	//valueBox->AddVarValue(&ball2->GetPositionPointer()->y, "2 Position Y");
-	//valueBox->AddVarValue(&ball2->GetSpeedPointer()->x, "2 Speed X");
-	//valueBox->AddVarValue(&ball2->GetSpeedPointer()->y, "2 Speed Y");
-	//ballVector.push_back(ball2);
+	
+	BouncingBallEntity* ball2 = new BouncingBallEntity(5000.0f, 1.0f, sf::Sprite(texture2)); 
+	ball2->GetSprite()->setColor(sf::Color::Blue);
+	ball2->SetPosition(sf::Vector2f(0, 0));
+	
+	demoBox->drawVector.push_back(ball2->GetSprite());
+	valueBox->AddVarValue(&ball2->GetPositionPointer()->x, "2 Position X");
+	valueBox->AddVarValue(&ball2->GetPositionPointer()->y, "2 Position Y");
+	valueBox->AddVarValue(&ball2->GetSpeedPointer()->x, "2 Speed X");
+	valueBox->AddVarValue(&ball2->GetSpeedPointer()->y, "2 Speed Y");
+	ballVector.push_back(ball2);
 
 	//BouncingBallEntity* ball3 = new BouncingBallEntity(10.0f, 1.0f, sf::Sprite(texture));
 	//ball3->GetSprite()->setColor(sf::Color::Green);

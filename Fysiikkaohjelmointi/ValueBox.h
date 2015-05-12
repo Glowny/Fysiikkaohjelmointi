@@ -10,6 +10,7 @@ public:
 	~ValueBox();
 	void InitializeInput(std::string* stringPointer);	// Event-loopista täytyy hakea string, joten mainista tähän laitetaan pointteri osoittamaan.
 	void AddVarValue(float* valuePointer, std::string name);
+	void AddVarValue(float* valuePointer, float* setValuePointer, std::string name);
 	void Update();
 	void Draw();
 	void CheckMousePress();

@@ -55,20 +55,23 @@ sf::Vector2f Entity::GetNextSpeed()
 	return nextSpeed;
 }
 
-sf::Vector2f* Entity::GetPositionPointer()
+sf::Vector2f* Entity::GetCurrentPositionPointer()
 {
-	//return &currentPosition;
+	return &currentPosition;
+}
+sf::Vector2f* Entity::GetNextPositionPointer()
+{
 	return &nextPosition;
 }
 
-sf::Vector2f* Entity::GetSpeedPointer()
+sf::Vector2f* Entity::GetCurrentSpeedPointer()
 {
-	//return &currentSpeed;
-	return &nextSpeed;		// Ongelma: N‰ytt‰‰ v‰‰r‰t, ei-tarkastetut arvot outputissa. Ongelmana on se, ettei voida asettaa muuten oikeita arvoja.
-							// Sill‰ vanhojen arvojen pointteriin asetettaessa menev‰t hukkaan.
-							// Pit‰isi kai luoda uusi pointteri nextSpeedille, vai olisko struct float[2]* parempi?
+	return &currentSpeed;
 }
-
+sf::Vector2f* Entity::GetNextSpeedPointer()
+{
+	return &nextSpeed;
+}
 
 sf::Sprite* Entity::GetSprite()
 {

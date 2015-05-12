@@ -4,11 +4,20 @@
 
 Scene::Scene(sf::RenderWindow* window)
 {
+	pause = false;
 	textBox = new TextBox(window, sf::FloatRect(0.0f, 0.0f, 489.0f, 1024.0f));
 	valueBox = new ValueBox(window, sf::FloatRect(499.0f, 787.0f, 1280.0f, 1024.0f));
 	demoBox = new DemoBox(window, sf::FloatRect(499.0f, 0.0f, 1280.0f, 777.0f));
 }
 
+
+
+Scene::~Scene()
+{
+	delete textBox;
+	delete valueBox;
+	delete demoBox;
+}
 void Scene::SetInputString(std::string* inputString)
 {
 	if (valueBox != nullptr)
@@ -16,12 +25,14 @@ void Scene::SetInputString(std::string* inputString)
 		valueBox->InitializeInput(inputString);
 	}
 }
-
-Scene::~Scene()
+void Scene::TogglePausePhysics(bool pause)
 {
-	delete textBox;
-	delete valueBox;
-	delete demoBox;
+	this->pause = pause;
+}
+
+void Scene::TogglePausePhysics()
+{
+	pause = !pause;
 }
 
 void Scene::Draw()
@@ -33,6 +44,6 @@ void Scene::Draw()
 
 void Scene::Update()
 {
-	valueBox->Update();
+	valueBox->Update();	
 	demoBox->Update();
 }

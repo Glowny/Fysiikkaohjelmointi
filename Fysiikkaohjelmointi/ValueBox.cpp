@@ -23,6 +23,13 @@ void ValueBox::AddVarValue(float* valuePointer, std::string name)
 	int apumy = (varValueVector.size() - apumx) / 3;
 	varValueVector.push_back(VarValue(valuePointer, name, sf::Vector2f(10 + 192 * apumx, 10 + 56 * apumy)));
 }
+void ValueBox::AddVarValue(float* valuePointer, float* setValuePointer, std::string name)
+{
+	int apumx = varValueVector.size() % 4;
+	int apumy = (varValueVector.size() - apumx) / 3;
+
+	varValueVector.push_back(VarValue(valuePointer, setValuePointer, name, sf::Vector2f(10 + 192 * apumx, 10 + 56 * apumy)));
+}
 
 void ValueBox::Update()
 {
@@ -49,6 +56,7 @@ void ValueBox::Draw()
 
 void ValueBox::CheckMousePress()
 {
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && activeBox != nullptr)
 		ReleaseActiveBox();
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
@@ -101,7 +109,8 @@ void ValueBox::ReleaseActiveBox()
 
 void ValueBox::SetVarValue()
 {
-
+	if (activeBox->setValuePointer == nullptr)
+		return;
 	float newValue;
 	try
 	{
@@ -112,5 +121,6 @@ void ValueBox::SetVarValue()
 		return;
 	}
 
-	*activeBox->valuePointer = newValue;	// Asettaa tällä hetkellä vanhan arvon kohdalle.
+	*activeBox->setValuePointer = newValue;	
+	*activeBox->valuePointer = newValue;
 }

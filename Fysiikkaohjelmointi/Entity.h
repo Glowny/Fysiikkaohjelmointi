@@ -17,8 +17,11 @@ public:
 	sf::Vector2f GetNextPosition();
 	sf::Vector2f GetNextSpeed();
 
-	sf::Vector2f* GetPositionPointer();
-	sf::Vector2f* GetSpeedPointer();
+	sf::Vector2f* GetCurrentPositionPointer();
+	sf::Vector2f* GetNextPositionPointer();
+
+	sf::Vector2f* GetCurrentSpeedPointer();
+	sf::Vector2f* GetNextSpeedPointer();
 
 	sf::Sprite* GetSprite();
 

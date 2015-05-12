@@ -1,6 +1,6 @@
 #include "Physics.h"
 
-const float Physics::gravityAcceleration = 9.81;
+const float Physics::gravityAcceleration = 98.1;
 const float Physics::deltaTime = 1.0f/480.0;
 
 void Physics::GravityFunc(Entity* entity)

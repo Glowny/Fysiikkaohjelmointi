@@ -5,7 +5,7 @@
 class Physics
 {
 public:
-	const static float gravityAcceleration;
+	static float gravityAcceleration;
 	const static float deltaTime;
 	static void GravityFunc(Entity* entity);
 	

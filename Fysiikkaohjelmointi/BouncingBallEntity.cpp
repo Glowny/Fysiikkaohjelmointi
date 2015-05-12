@@ -14,3 +14,8 @@ BouncingBallEntity::BouncingBallEntity(float mass, float restitutionMultiplier,s
 BouncingBallEntity::~BouncingBallEntity()
 {
 }
+
+float* BouncingBallEntity::GetRestitutionPointer()
+{
+	return &restitutionMultiplier;
+}

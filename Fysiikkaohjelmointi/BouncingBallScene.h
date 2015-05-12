@@ -16,7 +16,7 @@ private:
 
 	sf::Texture texture;
 	sf::Texture texture2;
-
+	
 	float tempFloatTestMasterfulBoolpaskafix;
 
 	float valueBoxLoopTime;

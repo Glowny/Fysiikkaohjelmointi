@@ -18,6 +18,8 @@ public:
 	void SetInputString(std::string* inputString);	// Asetetaan inputstring valueboxille, koska event-looppi on mainissa.
 													// Tähän saattaa olla olemassa nätimpi ratkaisu jos event-looppi saatas tehtyä toisen kerran / tehtäisiin tänne.
 protected:
+
+	sf::Window* window;
 	virtual void UpdatePhysics(){};
 	bool pause;
 //	vector<Object>

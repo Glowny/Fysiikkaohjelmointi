@@ -32,9 +32,12 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 	valueBox->AddVarValue(&ball2->GetCurrentSpeedPointer()->x, &ball2->GetNextSpeedPointer()->x, "2 Speed X");
 	valueBox->AddVarValue(&ball2->GetCurrentSpeedPointer()->y, &ball2->GetNextSpeedPointer()->y, "2 Speed Y");
 
-	valueBox->AddVarValue(ball1->GetRestitutionPointer(), ball1->GetRestitutionPointer(), "1 Coefficient of Restitution");
-	valueBox->AddVarValue(ball2->GetRestitutionPointer(), ball2->GetRestitutionPointer(), "2 Coefficient of Restitution");
-	valueBox->AddVarValue(&(Physics::gravityAcceleration), &(Physics::gravityAcceleration), "Gravitational Acceleration");
+	valueBox->AddVarValue(ball1->GetRestitutionPointer(),  "1 Coefficient of Restitution");
+	valueBox->AddVarValue(ball2->GetRestitutionPointer(),  "2 Coefficient of Restitution");
+	valueBox->AddVarValue(&(Physics::gravityAcceleration), "Gravitational Acceleration");
+
+	valueBox->AddVarValue(ball1->GetMassPointer(), "1 Mass");
+	valueBox->AddVarValue(ball2->GetMassPointer(), "2 Mass");
 
 	ballVector.push_back(ball2);
 

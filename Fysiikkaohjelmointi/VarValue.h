@@ -7,8 +7,8 @@
 class VarValue
 {
 public:
-	VarValue(float* valuePointer, std::string valueName, sf::Vector2f pos);
-	VarValue(float* valuePointer,float* setValuePointer, std::string valueName, sf::Vector2f pos);
+	VarValue(float* valuePointer, std::string valueName, sf::Vector2f pos); // For functions that need only one pointer (shared getter/setter) 
+	VarValue(float* valuePointer,float* setValuePointer, std::string valueName, sf::Vector2f pos);	// For functions that need two pointers (getter and setter). 
 	~VarValue();
 	void Update();
 	void SetValue(std::string* inputString);

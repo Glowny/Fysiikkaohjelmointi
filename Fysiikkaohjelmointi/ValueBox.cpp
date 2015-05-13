@@ -20,13 +20,13 @@ void ValueBox::InitializeInput(std::string* stringPointer)
 void ValueBox::AddVarValue(float* valuePointer, std::string name)
 {
 	int apumx = varValueVector.size() % 4;
-	int apumy = (varValueVector.size() - apumx) / 3;
+	int apumy = (varValueVector.size() - apumx) / 4;
 	varValueVector.push_back(VarValue(valuePointer, name, sf::Vector2f(10 + 192 * apumx, 10 + 56 * apumy)));
 }
 void ValueBox::AddVarValue(float* valuePointer, float* setValuePointer, std::string name)
 {
 	int apumx = varValueVector.size() % 4;
-	int apumy = (varValueVector.size() - apumx) / 3;
+	int apumy = (varValueVector.size() - apumx) / 4;
 
 	varValueVector.push_back(VarValue(valuePointer, setValuePointer, name, sf::Vector2f(10 + 192 * apumx, 10 + 56 * apumy)));
 }

@@ -22,6 +22,8 @@ int main()
 	float dt;
 	float fpsUpdate = 0;
 
+	bool tempfix = true;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -29,22 +31,25 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			if (event.type == sf::Event::KeyPressed)
-			{
-				if (event.key.code == sf::Keyboard::BackSpace)
-				{
-					inputString.clear();
-					inputString.shrink_to_fit();
-				}
-				if (event.key.code == sf::Keyboard::Space)
-					scene.TogglePausePhysics();
-			}
-			if (event.type == sf::Event::TextEntered)
+			
+			if (event.type == sf::Event::TextEntered && tempfix)
 			{
 				if (event.text.unicode < 128)
 				{
 					inputString += static_cast<char>(event.text.unicode);
 				}
+			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::BackSpace)
+				{
+					inputString.clear();
+					tempfix = false;
+				}
+				else
+					tempfix = true;
+				if (event.key.code == sf::Keyboard::Space)
+					scene.TogglePausePhysics();
 			}
 			
 		}

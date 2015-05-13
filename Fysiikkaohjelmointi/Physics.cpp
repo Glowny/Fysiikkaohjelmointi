@@ -47,7 +47,7 @@ void Physics::InelasticObjectCollision(BouncingBallEntity* first, BouncingBallEn
 	
 	float avg = (first->radius + second->radius) / 2;
 
-	if (tempX < 0 && tempY > 0)
+	if (tempX <= 0 && tempY >= 0)
 	{
 		temp1X = collisionPositionX - cos(angle)*avg;
 		temp1Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*avg;
@@ -63,7 +63,7 @@ void Physics::InelasticObjectCollision(BouncingBallEntity* first, BouncingBallEn
 		temp2X = collisionPositionX + cos(angle)*avg;
 		temp2Y = collisionPositionY + sqrt(sin(angle)*sin(angle))*avg;
 	}
-	else if (tempX > 0 && tempY < 0)
+	else if (tempX >= 0 && tempY <= 0)
 	{
 		temp1X = collisionPositionX + cos(angle)*avg;
 		temp1Y = collisionPositionY - sqrt(sin(angle)*sin(angle))*avg;

@@ -9,6 +9,7 @@ public:
 	~BouncingBallEntity();
 
 	float* GetRestitutionPointer();
+	float* GetMassPointer();
 	float mass;
 	float radius;
 	float restitutionMultiplier;

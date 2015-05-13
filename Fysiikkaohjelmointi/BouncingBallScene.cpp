@@ -55,14 +55,6 @@ BouncingBallScene::BouncingBallScene(sf::RenderWindow* window) :Scene(window)
 	//ball2->SetSpeed(sf::Vector2f(0, 0));
 	//ball3->SetSpeed(sf::Vector2f(100, 10));
 
-	for (int i = 0; i < 10; i++)
-	{
-		BouncingBallEntity* newBall = new BouncingBallEntity(10 + i*20.0f, 0.9, sf::Sprite(texture));
-		newBall->SetPosition(sf::Vector2f(50 + i*64, -350));
-		newBall->GetSprite()->setColor(sf::Color(150 + i * 10, i * 20, i * 25));
-		demoBox->drawVector.push_back(newBall->GetSprite());
-		ballVector.push_back(newBall);
-	}
 }
 
 BouncingBallScene::~BouncingBallScene()
@@ -81,6 +73,15 @@ void BouncingBallScene::Update(float dt)
 	UpdatePhysics(dt);
 
 	UpdateValueBox(dt);
+
+}
+
+void BouncingBallScene::AddBall()
+{
+	BouncingBallEntity* newBall = new BouncingBallEntity(2000.0f, 0.6, sf::Sprite(texture));
+	newBall->SetPosition(sf::Vector2f(300, -350));
+	demoBox->drawVector.push_back(newBall->GetSprite());
+	ballVector.push_back(newBall);
 }
 
 void BouncingBallScene::UpdatePhysics(float dt)

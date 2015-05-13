@@ -1,15 +1,11 @@
-﻿Build started 5/13/2015 7:47:48 AM.
-     1>Project "C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\Fysiikkaohjelmointi\Fysiikkaohjelmointi.vcxproj" on node 2 (Build target(s)).
+﻿Build started 13.5.2015 11:08:48.
+     1>Project "C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\Fysiikkaohjelmointi\Fysiikkaohjelmointi.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         H:\Hurja\VC\bin\CL.exe /c /I"C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\\SFML-2.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt BouncingBallScene.cpp
-         BouncingBallScene.cpp
-     1>c:\users\loistava\documents\github\fysiikkaohjelmointi2\fysiikkaohjelmointi\bouncingballscene.cpp(60): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\loistava\documents\github\fysiikkaohjelmointi2\fysiikkaohjelmointi\bouncingballscene.cpp(61): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\loistava\documents\github\fysiikkaohjelmointi2\fysiikkaohjelmointi\bouncingballscene.cpp(70): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\loistava\documents\github\fysiikkaohjelmointi2\fysiikkaohjelmointi\bouncingballscene.cpp(93): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\loistava\documents\github\fysiikkaohjelmointi2\fysiikkaohjelmointi\bouncingballscene.cpp(121): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\\SFML-2.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Physics.cpp
+         Physics.cpp
+     1>c:\users\tti13svesak\documents\visual studio 2013\projects\fysiikkaohjelmointi\fysiikkaohjelmointi\physics.cpp(4): warning C4305: 'initializing' : truncation from 'double' to 'const float'
        Link:
-         H:\Hurja\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\Debug\Fysiikkaohjelmointi.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\\SFML-2.2\lib" "sfml-system-d.lib" "sfml-window-d.lib" "sfml-graphics-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\Debug\Fysiikkaohjelmointi.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\Debug\Fysiikkaohjelmointi.lib" /MACHINE:X86 Debug\BouncingBallEntity.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\Debug\Fysiikkaohjelmointi.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\\SFML-2.2\lib" "sfml-system-d.lib" "sfml-window-d.lib" "sfml-graphics-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\Debug\Fysiikkaohjelmointi.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\Debug\Fysiikkaohjelmointi.lib" /MACHINE:X86 Debug\BouncingBallEntity.obj
          Debug\BouncingBallScene.obj
          Debug\Box.obj
          Debug\DemoBox.obj
@@ -21,9 +17,9 @@
          Debug\TextBox.obj
          Debug\ValueBox.obj
          Debug\VarValue.obj
-         Fysiikkaohjelmointi.vcxproj -> C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\Debug\Fysiikkaohjelmointi.exe
-     1>Done Building Project "C:\Users\Loistava\Documents\GitHub\Fysiikkaohjelmointi2\Fysiikkaohjelmointi\Fysiikkaohjelmointi.vcxproj" (Build target(s)).
+         Fysiikkaohjelmointi.vcxproj -> C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\Debug\Fysiikkaohjelmointi.exe
+     1>Done Building Project "C:\Users\tti13svesak\Documents\Visual Studio 2013\Projects\Fysiikkaohjelmointi\Fysiikkaohjelmointi\Fysiikkaohjelmointi.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.90
+Time Elapsed 00:00:02.40

@@ -50,6 +50,9 @@ int main()
 					tempfix = true;
 				if (event.key.code == sf::Keyboard::Space)
 					scene.TogglePausePhysics();
+				if (event.key.code == sf::Keyboard::A)
+					scene.AddBall();
+
 			}
 			
 		}

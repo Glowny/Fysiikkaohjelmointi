@@ -8,6 +8,7 @@ public:
 	BouncingBallScene(sf::RenderWindow* window);
 	~BouncingBallScene();
 	void Update(float dt);
+	void AddBall();
 private:
 	std::vector<BouncingBallEntity*> ballVector;
 	void UpdatePhysics(float dt);

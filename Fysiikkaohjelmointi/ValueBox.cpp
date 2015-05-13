@@ -73,6 +73,7 @@ void ValueBox::CheckMousePress()
 			pressedNothing = false;
 			if (activeBox == nullptr)
 			{
+				inputString->clear();
 				activeBox = &varValueVector[i];
 				activeBox->inputBox.setFillColor(sf::Color(150, 150, 150));
 			}
